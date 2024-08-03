@@ -1,8 +1,11 @@
 'use server';
 
 import BirthdayList from '@/components/features/BirthdayList';
+import ErrorDialog from '@/components/features/ErrorDialog';
 import FetchButton from '@/components/features/FetchButton';
-import { BirthdayProvider } from './context/AppContext';
+import Toolbar from '@/components/features/Toolbar';
+import { BirthdayProvider } from '@/context/BirthdayContext';
+import { SettingsProvider } from '@/context/SettingsContext';
 
 export default async function Home() {
   // different languages
@@ -11,11 +14,15 @@ export default async function Home() {
   // types - holidays, deaths, events, etc
 
   return (
-    <BirthdayProvider>
-      <main className="p-6">
-        <BirthdayList />
-        <FetchButton />
-      </main>
-    </BirthdayProvider>
+    <SettingsProvider>
+      <BirthdayProvider>
+        <main className="p-6">
+          <Toolbar />
+          <BirthdayList />
+          <FetchButton />
+          <ErrorDialog />
+        </main>
+      </BirthdayProvider>
+    </SettingsProvider>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
+import { fetchBirthdays } from '@/app/actions';
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { fetchBirthdays } from '../actions';
 
 export interface WikiResponseInterface {
   text: string;
@@ -23,13 +23,15 @@ export interface WikiResponseInterface {
   ];
 }
 
-interface BirthdayContextType {
+interface BirthdayContextInterface {
   birthdays: WikiResponseInterface[] | null;
   loading: boolean;
   getBirthdays: () => void;
+  error: string | null | undefined;
+  clearError: () => void;
 }
 
-const BirthdayContext = createContext<BirthdayContextType | undefined>(
+const BirthdayContext = createContext<BirthdayContextInterface | undefined>(
   undefined
 );
 
@@ -38,16 +40,31 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
     null
   );
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | undefined | null>(null);
+
+  const clearError = () => setError(null);
 
   const getBirthdays = async () => {
     setLoading(true);
-    const response = await fetchBirthdays();
-    setBirthdays(response.births);
-    setLoading(false);
+    try {
+      const result = await fetchBirthdays();
+      if (result.success) {
+        setBirthdays(result.data.births);
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      console.error('Error in getBirthdays:', error);
+      // Handle any unexpected errors
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <BirthdayContext.Provider value={{ birthdays, loading, getBirthdays }}>
+    <BirthdayContext.Provider
+      value={{ birthdays, loading, getBirthdays, error, clearError }}
+    >
       {children}
     </BirthdayContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { WikiResponseInterface } from '@/app/context/AppContext';
+import { WikiResponseInterface } from '@/context/BirthdayContext';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 

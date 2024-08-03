@@ -1,14 +1,17 @@
 'use client';
 
-import { useBirthdayContext } from '@/app/context/AppContext';
+import { useBirthdayContext } from '@/context/BirthdayContext';
 import { Button } from '../ui/button';
 
 const FetchButton = () => {
-  const { getBirthdays } = useBirthdayContext();
+  const { birthdays, error, loading, getBirthdays } = useBirthdayContext();
+  if (birthdays && !error) {
+    return null;
+  }
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <Button onClick={getBirthdays}>View Birthdays</Button>
-    </form>
+    <Button disabled={loading} onClick={getBirthdays}>
+      View Birthdays
+    </Button>
   );
 };
 
