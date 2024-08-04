@@ -73,7 +73,10 @@ const BirthdayTableView = ({
                 <TableCell className="font-semibold">{birthday.text}</TableCell>
                 <TableCell className="font-medium">{birthday.year}</TableCell>
                 <TableCell>{description}</TableCell>
-                <TableCell className="font-medium">{extract}</TableCell>
+                {/* on mobile and small screens, set overflow y so that extract content is scrollable otherwise there's not enough space to show all the text */}
+                <TableCell className="font-medium md:overflow-y-visible md:max-h-auto block max-h-[200px] overflow-y-scroll">
+                  {extract}
+                </TableCell>
               </TableRow>
             );
           })}

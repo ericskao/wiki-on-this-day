@@ -17,9 +17,6 @@ const TablePagination = ({
   setCurrentPage: (page: number) => void;
   totalPages: number;
 }) => {
-  {
-    /* To-do need to handle pagination for different screen sizes */
-  }
   return (
     <Pagination>
       <PaginationContent className="cursor-pointer">
@@ -35,7 +32,15 @@ const TablePagination = ({
           />
         </PaginationItem>
         {[...Array(totalPages)].map((_, index) => (
-          <PaginationItem key={index}>
+          <PaginationItem
+            key={index}
+            className={clsx('hidden md:block', {
+              block:
+                currentPage === index + 1 ||
+                currentPage === index ||
+                currentPage === index - 1,
+            })}
+          >
             <PaginationLink
               onClick={() => {
                 setCurrentPage(index + 1);

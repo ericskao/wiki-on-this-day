@@ -8,8 +8,6 @@ import { BirthdayProvider } from '@/context/BirthdayContext';
 import { SettingsProvider } from '@/context/SettingsContext';
 
 export default async function Home() {
-  // different languages
-  // pagination
   // different days
   // types - holidays, deaths, events, etc
 
