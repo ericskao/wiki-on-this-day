@@ -4,21 +4,20 @@ import { useBirthdayContext } from '@/context/BirthdayContext';
 import { useSettingsContext } from '@/context/SettingsContext';
 import BirthdayTableView from './BirthdayTableView';
 import BirthdayTimelineView from './BirthdayTimelineView';
+import CardsSkeleton from './CardsSkeleton';
 
 const BirthdayList = () => {
   const { loading, birthdays } = useBirthdayContext();
   const { view } = useSettingsContext();
 
   return (
-    <div>
-      {loading && <p>Loading...</p>}
-      <div>
-        {view === 'cards' ? (
-          <BirthdayTimelineView birthdays={birthdays} />
-        ) : (
-          <BirthdayTableView birthdays={birthdays} />
-        )}
-      </div>
+    <div className="mt-12">
+      {loading && <CardsSkeleton />}
+      {view === 'cards' ? (
+        <BirthdayTimelineView birthdays={birthdays} />
+      ) : (
+        <BirthdayTableView birthdays={birthdays} />
+      )}
     </div>
   );
 };

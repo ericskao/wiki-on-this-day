@@ -5,13 +5,22 @@ import { Button } from '../ui/button';
 
 const FetchButton = () => {
   const { birthdays, error, loading, getBirthdays } = useBirthdayContext();
-  if (birthdays && !error) {
+  if ((birthdays && !error) || loading) {
     return null;
   }
   return (
-    <Button disabled={loading} onClick={getBirthdays}>
-      View Birthdays
-    </Button>
+    <div className="flex gap-x-2">
+      <Button disabled={loading} onClick={() => getBirthdays()}>
+        View Birthdays
+      </Button>
+      <Button
+        disabled={loading}
+        variant="destructive"
+        onClick={() => getBirthdays('random string')}
+      >
+        Failure API Button
+      </Button>
+    </div>
   );
 };
 

@@ -22,7 +22,7 @@ const BirthdayTimelineView = ({
             <h2 className="sticky top-0 text-center mb-4 text-lg font-semibold bg-white border-b border-b-gray-600">
               {birthdays[0].year}
             </h2>
-            <ul className="flex flex-wrap item-stretch gap-x-3">
+            <ul className="flex flex-wrap item-stretch gap-3">
               {birthdays.map((birthday, index) => {
                 const { description, extract, normalizedtitle } =
                   birthday.pages[0] || {}; // safely destructure in rare case there are no pages

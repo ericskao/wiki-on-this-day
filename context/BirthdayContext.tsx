@@ -26,7 +26,7 @@ export interface WikiResponseInterface {
 interface BirthdayContextInterface {
   birthdays: WikiResponseInterface[] | null;
   loading: boolean;
-  getBirthdays: () => void;
+  getBirthdays: (params?: string) => void;
   error: string | null | undefined;
   clearError: () => void;
 }
@@ -44,10 +44,11 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
 
   const clearError = () => setError(null);
 
-  const getBirthdays = async () => {
+  const getBirthdays = async (params?: string) => {
     setLoading(true);
+    // api will fail if params is passed in
     try {
-      const result = await fetchBirthdays();
+      const result = await fetchBirthdays(JSON.stringify(params));
       if (result.success) {
         setBirthdays(result.data.births);
       } else {

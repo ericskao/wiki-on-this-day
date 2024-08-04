@@ -1,6 +1,6 @@
 'use server';
 
-export async function fetchBirthdays(formData?: FormData) {
+export async function fetchBirthdays(params?: string) {
   // this is a server side action, avoids making the fetch from the client
   const lang = 'en';
   const date = new Date();
@@ -10,6 +10,14 @@ export async function fetchBirthdays(formData?: FormData) {
 
   // API: /feed/1v/ wikipedia / { language } / onthisday / { type } / { MM } / { DD }
   try {
+    if (params) {
+      return {
+        success: false,
+        error:
+          'Fetch birthdays API does not accept parameters. Please try again.',
+        status: 400,
+      };
+    }
     // Uncomment this to test error case:
     // throw new Error('API request failed');
 
