@@ -4,14 +4,15 @@ import { useBirthdayContext } from '@/context/BirthdayContext';
 import { useSettingsContext } from '@/context/SettingsContext';
 import { TableCellsIcon, ViewColumnsIcon } from '@heroicons/react/24/outline';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
+import { DatePicker } from './DatePicker';
 
 const ICON_WIDTH = 24;
 
 const Toolbar = () => {
-  const { view, setView } = useSettingsContext();
+  const { view, setView, date, setDate } = useSettingsContext();
   const { birthdays } = useBirthdayContext();
   return (
-    <div className="">
+    <div className="flex">
       <Tabs value={view} className="w-[400px]">
         <TabsList>
           <TabsTrigger
@@ -34,6 +35,7 @@ const Toolbar = () => {
           </TabsTrigger>
         </TabsList>
       </Tabs>
+      <DatePicker date={date} setDate={setDate} />
     </div>
   );
 };

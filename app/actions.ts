@@ -1,28 +1,24 @@
 'use server';
 
-export async function fetchBirthdays(params?: string) {
+export type FetchBirthdaysParamsType = { date: Date; fail?: boolean };
+
+export async function fetchBirthdays(params: FetchBirthdaysParamsType) {
   // this is a server side action, avoids making the fetch from the client
-  const lang = 'en';
-  const date = new Date();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
   const type = 'births'; // all, births, deaths
 
   // API: /feed/1v/ wikipedia / { language } / onthisday / { type } / { MM } / { DD }
   try {
-    if (params) {
+    if (params?.fail || !params?.date) {
       return {
         success: false,
-        error:
-          'Fetch birthdays API does not accept parameters. Please try again.',
+        error: 'API request failed. You might be missing a date.',
         status: 400,
       };
     }
-    // Uncomment this to test error case:
-    // throw new Error('API request failed');
-
+    const month = params.date.getMonth() + 1;
+    const day = params.date.getDate();
     const response = await fetch(
-      `https://api.wikimedia.org/feed/v1/wikipedia/${lang}/onthisday/${type}/${month}/${day}`
+      `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/${type}/${month}/${day}`
     );
 
     if (!response.ok) {

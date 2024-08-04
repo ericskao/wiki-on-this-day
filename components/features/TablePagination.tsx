@@ -18,7 +18,7 @@ const TablePagination = ({
   totalPages: number;
 }) => {
   return (
-    <Pagination>
+    <Pagination className="mt-2">
       <PaginationContent className="cursor-pointer">
         <PaginationItem>
           <PaginationPrevious

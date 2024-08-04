@@ -1,7 +1,14 @@
 'use client';
 
-import { fetchBirthdays } from '@/app/actions';
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { fetchBirthdays, FetchBirthdaysParamsType } from '@/app/actions';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { useSettingsContext } from './SettingsContext';
 
 export interface WikiResponseInterface {
   text: string;
@@ -26,7 +33,7 @@ export interface WikiResponseInterface {
 interface BirthdayContextInterface {
   birthdays: WikiResponseInterface[] | null;
   loading: boolean;
-  getBirthdays: (params?: string) => void;
+  getBirthdays: (params: FetchBirthdaysParamsType) => void;
   error: string | null | undefined;
   clearError: () => void;
 }
@@ -36,21 +43,24 @@ const BirthdayContext = createContext<BirthdayContextInterface | undefined>(
 );
 
 const BirthdayProvider = ({ children }: { children: ReactNode }) => {
+  const { date } = useSettingsContext();
   const [birthdays, setBirthdays] = useState<WikiResponseInterface[] | null>(
     null
   );
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined | null>(null);
+  const [hasInitialFetch, setHasInitialFetch] = useState<boolean>(false);
 
   const clearError = () => setError(null);
 
-  const getBirthdays = async (params?: string) => {
+  const getBirthdays = async (params: FetchBirthdaysParamsType) => {
     setLoading(true);
-    // api will fail if params is passed in
+    // api will fail if fail param is passed in
     try {
-      const result = await fetchBirthdays(JSON.stringify(params));
+      const result = await fetchBirthdays(params);
       if (result.success) {
         setBirthdays(result.data.births);
+        setHasInitialFetch(true);
       } else {
         setError(result.error);
       }
@@ -61,6 +71,12 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (date && hasInitialFetch) {
+      getBirthdays({ date });
+    }
+  }, [date, hasInitialFetch]);
 
   return (
     <BirthdayContext.Provider

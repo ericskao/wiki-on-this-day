@@ -48,7 +48,7 @@ const BirthdayTableView = ({
       <Input
         type="search"
         placeholder="Search name or year"
-        className="w-52"
+        className="w-52 mb-5"
         value={search}
         onChange={(e) => {
           setCurrentPage(1);
@@ -74,7 +74,7 @@ const BirthdayTableView = ({
                 <TableCell className="font-medium">{birthday.year}</TableCell>
                 <TableCell>{description}</TableCell>
                 {/* on mobile and small screens, set overflow y so that extract content is scrollable otherwise there's not enough space to show all the text */}
-                <TableCell className="font-medium md:overflow-y-visible md:max-h-auto block max-h-[200px] overflow-y-scroll">
+                <TableCell className="font-medium block max-h-[200px] overflow-y-scroll custom-scrollbar">
                   {extract}
                 </TableCell>
               </TableRow>
