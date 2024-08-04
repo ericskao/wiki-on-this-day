@@ -6,6 +6,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { useSettingsContext } from './SettingsContext';
@@ -50,7 +51,9 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
   );
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined | null>(null);
-  const [hasInitialFetch, setHasInitialFetch] = useState<boolean>(false);
+
+  // use ref instead of state so updating initialFetch variable doesn't trigger a rerender
+  const initialFetchRef = useRef(false);
 
   const clearError = () => setError(null);
 
@@ -61,7 +64,7 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
       const result = await fetchBirthdays(params);
       if (result.success) {
         setBirthdays(result.data.births);
-        setHasInitialFetch(true);
+        initialFetchRef.current = true;
       } else {
         setError(result.error);
       }
@@ -74,10 +77,10 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (date && hasInitialFetch) {
+    if (date && initialFetchRef.current) {
       getBirthdays({ date });
     }
-  }, [date, hasInitialFetch]);
+  }, [date, initialFetchRef]);
 
   return (
     <BirthdayContext.Provider
@@ -87,7 +90,7 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
         getBirthdays,
         error,
         clearError,
-        hasInitialFetch,
+        hasInitialFetch: initialFetchRef.current,
       }}
     >
       {children}
