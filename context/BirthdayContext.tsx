@@ -36,6 +36,7 @@ interface BirthdayContextInterface {
   getBirthdays: (params: FetchBirthdaysParamsType) => void;
   error: string | null | undefined;
   clearError: () => void;
+  hasInitialFetch: boolean;
 }
 
 const BirthdayContext = createContext<BirthdayContextInterface | undefined>(
@@ -80,7 +81,14 @@ const BirthdayProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <BirthdayContext.Provider
-      value={{ birthdays, loading, getBirthdays, error, clearError }}
+      value={{
+        birthdays,
+        loading,
+        getBirthdays,
+        error,
+        clearError,
+        hasInitialFetch,
+      }}
     >
       {children}
     </BirthdayContext.Provider>

@@ -1,12 +1,6 @@
 import { WikiResponseInterface } from '@/context/BirthdayContext';
 import { groupByYear } from '@/lib/utils';
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '../ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 const BirthdayTimelineView = ({
   birthdays,
@@ -35,8 +29,6 @@ const BirthdayTimelineView = ({
                         </CardTitle>
                         <CardDescription>{description}</CardDescription>
                       </CardHeader>
-                      {/* <CardContent>{extract}</CardContent> */}
-                      <CardFooter></CardFooter>
                     </Card>
                   </li>
                 );

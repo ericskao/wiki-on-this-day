@@ -11,7 +11,7 @@ export async function fetchBirthdays(params: FetchBirthdaysParamsType) {
     if (params?.fail || !params?.date) {
       return {
         success: false,
-        error: 'API request failed. You might be missing a date.',
+        error: 'API request failed. Please try again later.',
         status: 400,
       };
     }

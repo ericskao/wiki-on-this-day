@@ -19,10 +19,6 @@ export function DatePicker({
   date: Date | undefined;
   setDate: (date: Date) => void;
 }) {
-  const customFormatters = {
-    formatCaption: (date: any) =>
-      date.toLocaleDateString('en-US', { month: 'long' }),
-  };
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -45,7 +41,6 @@ export function DatePicker({
             if (date) setDate(date);
           }}
           initialFocus
-          formatters={customFormatters}
         />
       </PopoverContent>
     </Popover>
