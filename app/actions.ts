@@ -1,6 +1,6 @@
 'use server';
 
-export type FetchBirthdaysParamsType = { date: Date; fail?: boolean };
+export type FetchBirthdaysParamsType = { date?: Date; fail?: boolean };
 
 export async function fetchBirthdays(params: FetchBirthdaysParamsType) {
   // this is a server side action, avoids making the fetch from the client

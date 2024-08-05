@@ -14,21 +14,19 @@ import { useSettingsContext } from './SettingsContext';
 export interface WikiResponseInterface {
   text: string;
   year: number;
-  pages: [
-    {
-      description: string;
-      extract: string;
-      titles: {
-        normalized: string;
-      };
-      thumbnail: {
-        source: string;
-        width: number;
-        height: number;
-      };
-      normalizedtitle: string;
-    }
-  ];
+  pages: {
+    description: string;
+    extract: string;
+    titles: {
+      normalized: string;
+    };
+    thumbnail: {
+      source: string;
+      width: number;
+      height: number;
+    };
+    normalizedtitle: string;
+  }[];
 }
 
 interface BirthdayContextInterface {

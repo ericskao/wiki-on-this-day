@@ -14,7 +14,9 @@ const BirthdayList = () => {
   return (
     <div className="mt-12">
       {hasInitialFetch && (
-        <h1 className="p-4 font-bold">Birthdays on {format(date, 'MMMM d')}</h1>
+        <h1 className="p-4 font-bold text-center text-4xl mb-4">
+          Birthdays on {format(date, 'MMMM d')}
+        </h1>
       )}
       {loading && <CardsSkeleton />}
       {view === 'cards' ? (

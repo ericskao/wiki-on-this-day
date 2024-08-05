@@ -22,6 +22,7 @@ const TablePagination = ({
       <PaginationContent className="cursor-pointer">
         <PaginationItem>
           <PaginationPrevious
+            data-testid="previous-button"
             className={clsx({
               'cursor-default opacity-50': currentPage === 1,
             })}
@@ -51,16 +52,17 @@ const TablePagination = ({
             </PaginationLink>
           </PaginationItem>
         ))}
-        <PaginationItem
-          className={clsx({
-            'cursor-default opacity-50': currentPage === totalPages,
-          })}
-          onClick={() => {
-            if (currentPage === totalPages) return;
-            setCurrentPage(currentPage + 1);
-          }}
-        >
-          <PaginationNext />
+        <PaginationItem>
+          <PaginationNext
+            data-testid="next-button"
+            className={clsx({
+              'cursor-default opacity-50': currentPage === totalPages,
+            })}
+            onClick={() => {
+              if (currentPage === totalPages) return;
+              setCurrentPage(currentPage + 1);
+            }}
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

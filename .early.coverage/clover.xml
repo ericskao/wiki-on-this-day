@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1722818308662" clover="3.2.0">
+  <project timestamp="1722818308663" name="All files">
+    <metrics statements="35" coveredstatements="33" conditionals="20" coveredconditionals="17" methods="6" coveredmethods="5" elements="61" coveredelements="55" complexity="0" loc="35" ncloc="35" packages="2" files="2" classes="2"/>
+    <package name="app">
+      <metrics statements="13" coveredstatements="13" conditionals="14" coveredconditionals="12" methods="1" coveredmethods="1"/>
+      <file name="actions.ts" path="/Users/kao/Developer/interview/levelpath-kao/app/actions.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="14" coveredconditionals="12" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="cond" truecount="9" falsecount="2"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="24" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib">
+      <metrics statements="22" coveredstatements="20" conditionals="6" coveredconditionals="5" methods="5" coveredmethods="4"/>
+      <file name="utils.ts" path="/Users/kao/Developer/interview/levelpath-kao/lib/utils.ts">
+        <metrics statements="22" coveredstatements="20" conditionals="6" coveredconditionals="5" methods="5" coveredmethods="4"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="7" type="cond" truecount="0" falsecount="1"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="7" type="stmt"/>
+        <line num="33" count="15" type="stmt"/>
+        <line num="34" count="15" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="10" type="stmt"/>
+        <line num="37" count="15" type="stmt"/>
+        <line num="38" count="15" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
