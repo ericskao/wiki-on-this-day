@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// TO-DO: unit tests, maybe deprecate?
 export function sortBirthdays(birthdays: WikiResponseInterface[] | null) {
   if (Array.isArray(birthdays)) {
     return birthdays.sort((a, b) => {
@@ -23,7 +22,6 @@ export function sortBirthdays(birthdays: WikiResponseInterface[] | null) {
   }
 }
 
-// TO-DO: unit tests
 export function groupByYear(array: WikiResponseInterface[] | null) {
   if (!array) {
     return [];
